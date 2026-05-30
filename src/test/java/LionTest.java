@@ -31,6 +31,7 @@ public class LionTest {
 
     @Test
     public void isGetKittensCorrect() throws Exception {
+        Mockito.when(feline.getKittens()).thenReturn(1);
         Lion lion = new Lion(feline, "Самец");
         int expectedCount = 5;
         Mockito.when(feline.getKittens()).thenReturn(expectedCount);
@@ -41,9 +42,9 @@ public class LionTest {
     @Test
     public void isGetFoodCorrect() throws Exception {
         Lion lion = new Lion(feline, "Самец");
-        List<String> expectedListOfFood = List.of("Пища");
-        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedListOfFood);
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
 
-        MatcherAssert.assertThat("Некорректный список еды", lion.getFood(), equalTo(expectedListOfFood));
+        MatcherAssert.assertThat("Некорректный список еды", lion.getFood(), equalTo(expectedFood));
     }
 }
